@@ -1,12 +1,55 @@
 # Section 4 & 5 Assessment: API → Clean → Explore
 
 **Duration:** 2-3 hours  
-**Submission:** Jupyter notebook (.ipynb) + brief 1-page findings summary  via github link
+**Submission:** Fork repo, commit notebook + findings summary
 **Learning Goals:**
 - Fetch real data from an API (Section 4: APIs)
 - Handle messy real-world data (Section 5: File Handling, Pandas Cleaning)
 - Perform initial EDA (Section 5: Pandas Exploration/EDA)
-- Document findings clearly (prepare for visualization)
+- Use Git/GitHub workflow to submit work (Section 1: Version Control)
+
+---
+
+## Setup: Fork the Repository
+
+Before you start, you'll submit your work via GitHub using the fork workflow:
+
+### Step 1: Fork the Assessment Repo
+1. Go to: **[assessment-repo-link-TBD]** (I'll share this)
+2. Click the **Fork** button (top-right corner)
+3. This creates your own copy of the repo under your GitHub account
+4. You'll see it as `your-username/section4-5-assessment`
+
+### Step 2: Clone Your Fork Locally
+```bash
+git clone https://github.com/YOUR-USERNAME/section4-5-assessment.git
+cd section4-5-assessment
+```
+
+### Step 3: Create a Branch for Your Work
+```bash
+git checkout -b solution/your-name
+```
+(Replace `your-name` with your actual name, e.g., `solution/jane-doe`)
+
+### Step 4: Add Your Work
+- Create your Jupyter notebook: `Section4-5_Assessment_[YourName].ipynb`
+- Create your findings summary: `Section4-5_Findings_[YourName].txt`
+- Save both files in the repo root
+
+### Step 5: Commit & Push
+```bash
+git add Section4-5_Assessment_[YourName].ipynb Section4-5_Findings_[YourName].txt
+git commit -m "feat: Section 4-5 assessment - [YourName]"
+git push origin solution/your-name
+```
+
+### Step 6: Submit a Pull Request (PR)
+1. Go to **your forked repo** on GitHub
+2. You'll see a banner suggesting "Compare & pull request"
+3. Click it → review your changes → click "Create Pull Request"
+4. Add a comment: "Ready for review"
+5. **That's your submission!**
 
 ---
 
@@ -26,13 +69,15 @@ This mimics a real data pipeline: raw → usable → understood.
 
 ### What to do
 1. Choose a **free public API** from this list (or propose one):
-   - **OpenWeather API** (weather data by city)
-   - **JSONPlaceholder** (fake social media posts, comments, users)
-   - **REST Countries API** (country stats: population, area, languages)
-   - **ISS Location API** (International Space Station location history)
-   - **PokéAPI** (Pokémon data: types, stats, evolution chains)
-   - **Open-Meteo** (historical & current weather, no API key needed)
-   - **GitHub API** (repository stars, commit counts, language stats)
+   - **OpenWeather API** (weather data by city) — works in Colab/local Jupyter
+   - **JSONPlaceholder** (fake social media posts, comments, users) — no auth needed
+   - **REST Countries API** (country stats: population, area, languages) — no auth needed
+   - **ISS Location API** (International Space Station location history) — no auth needed
+   - **PokéAPI** (Pokémon data: types, stats, evolution chains) — no auth needed
+   - **Open-Meteo** (historical & current weather, no API key needed) — recommended
+   - **GitHub API** (repository stars, commit counts, language stats) — no auth for public repos
+
+   **Note:** All APIs work from your local machine or Google Colab. If you're using Claude's built-in code environment, test your API call locally first.
 
 2. **Fetch at least 100+ rows** of data using `requests` library
 3. Store the data in a **pandas DataFrame**
@@ -94,10 +139,22 @@ This mimics a real data pipeline: raw → usable → understood.
 
 ## Submission Format
 
-### Part A: Jupyter Notebook
+### Via GitHub (Required)
+
+1. **Fork the repo** (see Setup section above)
+2. **Create a branch** named `solution/your-name`
+3. **Add two files** to your branch:
+   - `Section4-5_Assessment_[YourName].ipynb`
+   - `Section4-5_Findings_[YourName].txt`
+4. **Commit** with a clear message: `"feat: Section 4-5 assessment - [YourName]"`
+5. **Push** to your fork: `git push origin solution/your-name`
+6. **Create a Pull Request** on GitHub and comment "Ready for review"
+
+**Your PR is your submission.** I'll review it there and leave feedback as comments.
+
+### Jupyter Notebook Structure
 **File:** `Section4-5_Assessment_[YourName].ipynb`
 
-Structure:
 ```
 1. Title + Intro (1 cell)
 2. Part 1: Data Collection
@@ -119,8 +176,8 @@ Structure:
 - Use descriptive variable names
 - One analysis per cell (easy to read)
 
-### Part B: 1-Page Findings Summary
-**File:** `Section4-5_Findings_[YourName].txt` or `.pdf`
+### Findings Summary (1 Page)
+**File:** `Section4-5_Findings_[YourName].txt`
 
 Write in plain language:
 - **Dataset:** What data did you collect? (source, size, domain)
@@ -185,16 +242,50 @@ Or a time series showing humidity trends by location.
 
 ## Deliverables Checklist
 
-- [ ] Notebook file submitted (named correctly)
+### Git/GitHub
+- [ ] Forked the repo to your account
+- [ ] Created a branch: `solution/your-name`
+- [ ] Committed changes with clear message
+- [ ] Pushed to your fork
+- [ ] Created a Pull Request with "Ready for review" comment
+
+### Notebook File
+- [ ] Notebook file named correctly: `Section4-5_Assessment_[YourName].ipynb`
 - [ ] All cells run without errors
 - [ ] API source clearly documented
 - [ ] At least 3 cleaning steps shown
 - [ ] Univariate + bivariate analysis included
 - [ ] Markdown cells explain your thinking
-- [ ] 1-page findings summary attached
 - [ ] Code is commented & readable
 
+### Findings Summary
+- [ ] File named correctly: `Section4-5_Findings_[YourName].txt`
+- [ ] 1 page max (concise)
+- [ ] Covers: dataset, cleaning, key findings, next steps
+
 ---
+
+## Troubleshooting
+
+**"API returned 403 Forbidden"**
+- This is a network restriction in Claude.ai. Run your code in **Google Colab** or **local Jupyter** instead.
+- All APIs in the list work perfectly outside Claude's environment.
+
+**"Connection timeout"**
+- Check your internet connection.
+- Try a different API from the list (some are faster than others).
+- Open-Meteo tends to be the most reliable.
+
+**"Empty JSON or 0 records"**
+- Check your API parameters (URLs, query strings).
+- Some APIs require specific parameter formats. Read their docs briefly.
+- JSONPlaceholder always returns data; if it fails, you have a connection issue.
+
+**"I'm not sure if I fetched enough data"**
+- The task requires 100+ rows minimum. Most APIs can return this easily.
+- For PokéAPI: use `/pokemon?limit=150` to fetch 150 Pokémon records in one call.
+- For JSONPlaceholder: fetch `/posts`, `/comments`, or `/users` (each has 100+).
+- For REST Countries: `/all` returns 195 countries—plenty.
 
 ## Support & Questions
 
