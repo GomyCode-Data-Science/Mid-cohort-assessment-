@@ -1,0 +1,89 @@
+Introduction
+I collected 100 rows of data from the open meteo api for nairobi kenya from 1st may 2026 to 24th august 2026.
+The data was collected in json format and converted to a pandas dataframe.
+The dataframe was then cleaned by renaming the columns, converting the date column to datetime format, and extracting the month from the date column.
+The cleaned dataframe was then saved to a csv file named nairobi_weather_cleaned.csv.
+The dataframe was then analyzed by calculating the value counts and mode for the month column, calculating the skewness for the numeric columns, calculating the correlation matrix for the numeric columns,
+ and calculating the average temp_max_c by month using groupby.
+Findings from Nairobi Weather Data Analysis
+==================================================
+Total rows fetched: 116
+Missing values:
+date                         0
+temp_max_c                   0
+temp_min_c                   0
+precipitation_mm             0
+windspeed_max_kmh            0
+temp_max_c_outlier           0
+temp_min_c_outlier           0
+precipitation_mm_outlier     0
+windspeed_max_kmh_outlier    0
+dtype: int64
+Percentage of missing values:
+date                         0.0
+temp_max_c                   0.0
+temp_min_c                   0.0
+precipitation_mm             0.0
+windspeed_max_kmh            0.0
+temp_max_c_outlier           0.0
+temp_min_c_outlier           0.0
+precipitation_mm_outlier     0.0
+windspeed_max_kmh_outlier    0.0
+dtype: float64
+Duplicate rows: 0
+Outliers flagged in temp_max_c: 2
+Outliers flagged in temp_min_c: 0
+Outliers flagged in precipitation_mm: 18
+Outliers flagged in windspeed_max_kmh: 1
+====================================================================================================
+I used the IQR method for outlier detection.
+I kept since they represent real weather events.
+All outliers were flagged but not removed.
+====================================================================================================
+Initial shape: (116, 5)
+Current shape: (116, 9)
+==================================================
+
+Summary Statistics
+        temp_max_c  temp_min_c  precipitation_mm  windspeed_max_kmh
+mean         24.19       14.08              1.02              12.13
+median       24.25       14.15              0.40              12.00
+std           1.46        1.53              1.77               2.45
+min          20.60       10.60              0.00               5.80
+max          27.90       16.70             10.80              18.80
+
+=== Categorical: Value Counts for 'month' ===
+month
+May       31
+July      31
+June      30
+August    24
+
+=== Categorical: Mode for 'month' ===
+July
+
+=== Skewness ===
+temp_max_c           0.02
+temp_min_c          -0.05
+precipitation_mm     3.25
+windspeed_max_kmh    0.43
+
+=== Correlation Matrix (numeric pairs) ===
+                   temp_max_c  temp_min_c  precipitation_mm  windspeed_max_kmh
+temp_max_c               1.00       -0.16             -0.24               0.36
+temp_min_c              -0.16        1.00              0.54              -0.23
+precipitation_mm        -0.24        0.54              1.00              -0.29
+windspeed_max_kmh        0.36       -0.23             -0.29               1.00
+
+=== Groupby: Average temp_max_c by month ===
+month
+August    24.70
+July      24.23
+May       24.10
+June      23.82
+==================================================
+
+==================================================
+
+Conclusion
+The next steps for this analysis includes visualizing the data using plots to better understand the trends and patterns in the weather data.
