@@ -1,0 +1,33 @@
+DATASET
+
+I collected 150 Pokémon records from the PokéAPI. The dataset contains
+Pokémon characteristics including height, weight, base experience,
+battle statistics and Pokémon types. I collected the data using Python's
+requests library and stored it in a pandas DataFrame.
+
+CLEANING
+
+- I checked the dataset for missing values and found missing values in
+  the secondary_type column.
+- Missing secondary types were replaced with "None" because these values
+  represent Pokémon that have only one type.
+- I checked the dataset for duplicate rows and removed duplicates if any
+  were present.
+- I checked numeric columns and converted them to appropriate numeric
+  data types.
+- I investigated extreme height and weight values but did not remove
+  legitimate Pokémon observations simply because they were unusual.
+
+KEY FINDINGS
+
+- I found that 83 values were missing from the secondary_type column. This is expected because some Pokémon do not have a secondary type.
+- One interesting finding was that special attack and special defense had the strongest correlation (0.523204). This suggests that Pokémon with higher special attack often tend to have higher special defense as well.
+- An unexpected finding was that some Pokémon have very high weight compared with their height, showing that height does not always correspond directly to weight.
+
+NEXT STEPS
+
+The most useful next step would be to create visualizations comparing
+Pokémon types with battle statistics. A boxplot of attack by Pokémon type
+would make differences between types easier to see. A correlation heatmap
+could also show relationships between HP, attack, defense, special attack,
+special defense, and speed.
