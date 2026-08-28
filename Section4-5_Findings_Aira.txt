@@ -1,0 +1,28 @@
+FINDINGS
+
+DATASET
+I collected 500 comment records from the JSONPlaceholder API.
+The dataset contains 5 columns: postId, id, name, email, and body.
+
+CLEANING
+
+Found no missing values in any of the 5 columns.
+No missing values were therefore filled or dropped.
+The postId and id columns were already stored as integers.
+The name, email, and body columns were stored as text.
+Checked for duplicate records and removed duplicates if identified.
+Created name_length and body_length variables to support exploratory analysis.
+No outliers were removed because id and postId are identifiers rather than continuous measurements.
+
+KEY FINDINGS
+
+All columns contained 0 missing values, meaning the dataset was complete.
+The strongest correlation was between id and body_length, with a coefficient of 0.103202, indicating a very weak positive correlation.
+The correlation between name_length and body_length was -0.063774, indicating a very weak negative relationship.
+The correlation between id and name_length was 0.017231, indicating almost no relationship.
+Grouping the comments by postId allowed the average comment body length to be compared across posts.
+An interesting pattern was observed in the distribution of comment lengths, with some comments being noticeably longer than others.
+
+NEXT STEPS
+
+A heatmap of the correlations between the numerical variables would help visualize the relationships identified during the analysis. A bar chart comparing average comment length by postId would also provide a useful visual summary of the dataset.
